@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kira.FeQrlezA@E'""dko#kfnffff</title>
+    <style>
+        body {
+            background-image: url('kira.jpeg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            color: rgb(255, 255, 255);
+            font-family: 'Gothic', sans-serif;
+        }
+        #container {
+            text-align: center;
+            padding: 100px;
+        }
+        #message {
+            font-size: 24px;
+            color: red;
+        }
+        #textZone {
+            margin-top: 20px;
+            padding: 10px;
+            width: 300px;
+            border: 1px solid rgb(255, 0, 0);
+        }
+        #killButton {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: red;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <a href="https://xv5647.github.io/kira"><img src="https://fontmeme.com/permalink/231003/f21f3565d2a3324f3e1c01aa74846036.png" alt="polices-gothiques" border="0"></a>
+        <p></p>
+        <input type="text" id="textZone" placeholder="Entrez votre cible">
+        <button id="killButton">Tuer</button>
+    </div>
+    <audio id="myAudio" autoplay loop>
+        <source src="kira.mp3" type="audio/mpeg">
+        Votre navigateur ne supporte pas l'élément audio.
+    </audio>
+
+    <script>
+        var audio = document.getElementById("myAudio");
+
+        // Attendez une interaction de l'utilisateur avant de lancer l'audio
+        document.addEventListener("click", function() {
+            audio.play().catch(error => {
+                console.error(error);
+            });
+        });
+
+        // Votre code pour l'envoi du formulaire Discord irait ici...
+    </script>
+    <script>
+        document.getElementById("killButton").addEventListener("click", function() {
+            var pseudo = document.getElementById("textZone").value;
+    
+            const webhookURL = "https://discord.com/api/webhooks/1151837623355179028/mOl22UaVxEpDPuviIoeHDiabzBMnpfrjX6wVkj2WWndv-94oPuqSiwWsONEBHn7qFCRp";
+    
+            const embed = {
+                title: "Formulaire Kira",
+                description: "Nouvelle réponse au formulaire Kira",
+                color: 0x0088ff, // Couleur de l'embed (en hexadécimal)
+                fields: [
+                    {
+                        name: "Pseudo",
+                        value: pseudo,
+                        inline: true,
+                    },
+                ],
+            };
+    
+            fetch(webhookURL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    embeds: [embed],
+                }),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Erreur HTTP : ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                alert("Réponses envoyées avec succès !");
+                // Réinitialisez le formulaire si nécessaire
+                document.getElementById("textZone").value = ""; // Réinitialise le champ de texte
+            })
+            .catch(error => {
+                console.error(error);
+                alert("Cible éliminée...");
+            });
+        });
+    </script>
+    
+</body>
+</html>
